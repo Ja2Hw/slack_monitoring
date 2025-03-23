@@ -57,4 +57,20 @@
   - `already_notified_complete` 세트로 이미 알림이 발송된 GPU 추적
   - GPU 사용량이 0MB일 때 학습 완료 알림 발송 (중복 방지)
 
+<br><br>
+
+## 파일 버전 간 monitor_gpu 차이 비교
+
+| 기능 \ 버전 | v0 | v1 | v2 |
+|------------|----------------|-----------------|-------------------|
+| GPU 감지 함수 | get_gpu_memory() | get_all_gpu_memory() | get_gpu_memory_usage() |
+| 메모리 획득 명령어 | nvidia-smi --query-gpu | nvidia-smi --query-gpu | nvidia-smi 출력 직접 파싱 |
+| 모니터링 대상 | 단일 GPU | 다중 GPU | 다중 GPU(모델명 기준 탐지) |
+| 상태 관리 변수 | alert_sent_for_idle (전역 boolean) | previous_states (리스트) | previous_states (딕셔너리), already_notified_complete (세트) |
+| 알림 조건 | 사용량 0MB 또는 5GB 이상 변화 | 사용량 0MB 또는 5GB 이상 변화 | 사용량 0MB 또는 5GB 이상 변화 + 작업 정보 |
+| 프로세스 정보 | 수집 안 함 | 수집 안 함 | GPU UUID, PID, 메모리 수집 |
+| 작업 정보 | 수집 안 함 | 수집 안 함 | YAML 파일 분석 (모델 경로 수집) |
+| YAML 분석 | 없음 | 없음 | llama_path, whisper_path, beats_path 추출 |
+| 메시지 포맷 | 단일 GPU 기준 포맷 | 다중 GPU 통합 포맷 | 다중 GPU + 작업 정보 포맷 |
+
 <br>
