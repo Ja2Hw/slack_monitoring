@@ -2,7 +2,7 @@
 우분투 환경 서버의 디스크 사용량과 GPU 사용량을 슬랙으로 알려주는 프로그램입니다.
 
 블로그에 슬랙 API를 비롯한 좀 더 자세한 내용을 기록하였습니다.
-- [Ja2Hw Dev-log 서버 사용 현황 모니터링 후 슬랙 봇으로 알려주기](https://ja2hw.tistory.com/6)
+- [Ja2Hw Dev-log :: 서버 사용 현황 모니터링 후 슬랙 봇으로 알려주기](https://ja2hw.tistory.com/6)
 
 <br>
 
